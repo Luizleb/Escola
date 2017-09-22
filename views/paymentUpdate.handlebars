@@ -1,0 +1,40 @@
+<div class="row">
+    <div>
+        <form action="/payment/update/post" method="post" class="pay-update">
+            <div class="pay-title">
+                <label>Atualização de Pagamentos : <span class="student-name">{{name}}{{id}}</span></label>
+            </div>
+            <div class="pay-title">
+                <label>Mês de Referência :</label>
+                <select name="mesId">
+                    <option></option>
+                    {{# each listDates}}
+                        <option value={{id}}>{{dateName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+
+            <div class="pay-title">
+                <label>Valor Pago (R$) :</label>
+                <input type="text" class="simple-input" name="payment">
+            </div>
+
+            <div class="pay-title">
+                    <label>Local do Pagamento :</label>
+                    <select name="localName">
+                        <option value="Tesouraria">Banco</option>
+                        <option value="Banco">Tesouraria</option>
+                    </select>
+                </div>
+
+            <div class="pay-title">
+                <label>Data do Pagamento :</label>
+                <input type="date" class="simple-input" name="date" id="datepicker">
+            </div>
+
+            <div>
+                <input type="submit" value="Lançar">
+            </div>
+        </form> 
+    </div>
+</div>

@@ -1,0 +1,108 @@
+/*--- Basic Setup ---*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*--- Global Setup ---*/
+body {
+    font-family: 'Roboto', Verdana, Tahoma, sans-serif;
+    font-weight: lighter;
+    font-size: 14px;
+    color: #4F4F4F
+}
+
+.row {
+    max-width: 1140px;
+    margin: 0 auto;
+}
+
+/*--- Header Setup ---*/
+.main-header {
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    background-color: lightgray;
+    margin-top: 15px;
+}
+
+.main-title, .main-nav{
+    padding: 15px;
+}
+
+.main-nav a {
+    padding: 10px;
+    text-decoration: none;
+    color: #000085;
+    padding-bottom: 1px;
+}
+
+.pay-input {
+    display: flex;
+    justify-content: center;
+    padding: 30px;
+}
+
+.pay-output, .pay-update {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.pay-title {
+    font-size: 0.8rem;
+    margin: 20px auto;
+}
+
+.pay-title input, select {
+    height: 25px;
+    text-align: center;
+}
+
+.pay-table {
+    margin: 20px auto;
+    font-size: 0.7rem;
+}
+
+.simple-input {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    text-align: center;
+}
+
+.pay-table th {
+    border-bottom: 1px solid gray;
+    padding: 5px;
+}
+
+.pay-table td {
+    border-bottom: 1px solid lightgray;
+    padding: 5px;
+}
+
+.table-value {
+    text-align: right;
+}
+
+.btn, input[type=submit] {
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    background-color: #e67e22;
+    border: 1px solid #e67e22;
+    color: white;
+    font-size: 0.9rem;
+    margin: 40px auto;
+}
+
+.names form {
+    display : flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.student-name {
+    font-weight: 400;
+    text-decoration: underline;
+}

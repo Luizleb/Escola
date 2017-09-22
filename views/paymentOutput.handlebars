@@ -1,0 +1,38 @@
+<div class="row">
+    <div class="pay-output">
+        <div class="pay-title">
+            <h3>Id : {{id}} - {{name}}</h3>
+        </div>
+        <div class="pay-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Mês</th>
+                        <th>Valor Pago (R$)</th>
+                        <th>Data Pagto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{# each results}}
+                        <tr>
+                            <td>{{month}}</td>
+                            <td class = "table-value">{{value}}</td>
+                            <td class = "table-value">{{date}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td>Total</td>
+                        <td class="table-value">{{totalPayment}}</td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div>
+            <a href="/payment/update/{{id}}/{{name}}" class="btn">Lançar Pagamento</a>
+        </div>
+    </div>
+</div>
+

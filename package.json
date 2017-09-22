@@ -1,0 +1,23 @@
+{
+  "name": "escola",
+  "version": "1.0.0",
+  "description": "Controle Financeiro EPJSM",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/tape test/*.js"
+  },
+  "author": "LEB",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.1",
+    "dateformat": "^3.0.2",
+    "express": "^4.15.4",
+    "express-handlebars": "^3.0.0",
+    "format-number": "^3.0.0",
+    "mysql": "^2.14.1",
+    "nodemon": "^1.12.1"
+  },
+  "devDependencies": {
+    "tape": "^4.8.0"
+  }
+}
