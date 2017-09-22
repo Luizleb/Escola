@@ -1,0 +1,43 @@
+<div class="row">
+    <div class="pay-input">
+        <div class="names">
+            <form action="/treasury/output" method="post">
+                <div class="pay-title">
+                    <label>Conta :</label>
+                    <select name="accountId">
+                        <option></option>
+                        {{# each accountList}}
+                            <option value={{accountId}}>{{accountName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+
+                <div class="pay-title">
+                    <label>Forma de Pagamento :</label>
+                    <input type="radio" name="forma" value="Dinheiro" checked>Dinheiro
+                    <input type="radio" name="forma" value="Cheque">Cheque
+                    <input type="radio" name="forma" value="Cartão">Cartão
+                </div>
+
+                <div class="pay-title">
+                    <label>Descrição :</label>
+                    <input type="text" class="simple-input" name="description">
+                </div>
+
+                <div class="pay-title">
+                    <label>Data :</label>
+                    <input type="date" class="simple-input" name="date">
+                </div>
+
+                <div class="pay-title">
+                    <label>Valor Pago (R$) :</label>
+                    <input type="text" class="simple-input" name="value">
+                </div>
+
+                <div>
+                    <input type="submit" value="Lançar">
+                </div>
+            </form> 
+        </div>
+    </div>
+</div>

@@ -4,8 +4,8 @@
         <div class="names">
             <form action="/payment/output" method="post">
                 <div>
-                    <label for="Aluno">Aluno :</label>
-                    <select id="studentList" name="studentId">
+                    <label>Aluno :</label>
+                    <select name="studentId">
                         <option></option>
                         {{# each listNames}}
                             <option value={{studentId}}>{{studentName}}</option>

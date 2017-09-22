@@ -68,6 +68,7 @@ module.exports = {
             pay_actual_date: req.body.date,
             pay_actual_interest: 0,
             pay_actual_value: req.body.payment,
+            pay_method: req.body.forma,
             pay_status: 0,
             pay_remarks: "",
             pay_user: "LEB",

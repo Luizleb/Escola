@@ -2,7 +2,7 @@
     <div>
         <form action="/payment/update/post" method="post" class="pay-update">
             <div class="pay-title">
-                <label>Atualização de Pagamentos : <span class="student-name">{{name}}{{id}}</span></label>
+                <label>Atualização de Pagamentos : <span class="student-name">{{name}}</span></label>
             </div>
             <div class="pay-title">
                 <label>Mês de Referência :</label>
@@ -20,12 +20,19 @@
             </div>
 
             <div class="pay-title">
-                    <label>Local do Pagamento :</label>
-                    <select name="localName">
-                        <option value="Tesouraria">Banco</option>
-                        <option value="Banco">Tesouraria</option>
-                    </select>
-                </div>
+                <label>Local do Pagamento :</label>
+                <select name="localName" id="local">
+                    <option value="Tesouraria">Banco</option>
+                    <option value="Banco">Tesouraria</option>
+                </select>
+            </div>
+
+            <div class="pay-title" id="forma">
+                <label>Forma de Pagamento :</label>
+                <input type="radio" name="forma" value="Dinheiro" checked>Dinheiro
+                <input type="radio" name="forma" value="Cheque">Cheque
+                <input type="radio" name="forma" value="Cartão">Cartão
+            </div>
 
             <div class="pay-title">
                 <label>Data do Pagamento :</label>
@@ -38,3 +45,12 @@
         </form> 
     </div>
 </div>
+
+<script>
+    var elem = document.getElementById("local");
+    elem.addEventListener('change', showElem, true);
+    function showElem() {
+        document.getElementById("forma").style.display = "block";
+    }
+
+</script>
