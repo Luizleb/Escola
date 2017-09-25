@@ -45,11 +45,30 @@ body {
     margin-top: 30px;
 }
 
+.simple-input {
+    border: none;
+    border-bottom: 1px solid lightgray;
+    text-align: center;
+    outline: none;
+    line-height:1.5em;
+}
+
 .standard-input {
     font-size: 0.8em;
     margin: 20px auto;
-    height:1.5em;
-    text-align: center;
+}
+
+.standard-input ul {
+    list-style: none;
+}
+
+.standard-input li {
+    margin-bottom: 1em;
+    text-decoration: none;
+}
+
+.standard-input li a {
+    text-decoration: none;
 }
 
 .underlined-title {
@@ -63,16 +82,27 @@ input[type="radio"] {
     margin-right: 0.65em;
 }
 
+.form-total {
+    font-size: 1em;
+    font-weight: bold;
+    border: none;
+    text-align: center;
+}
+
+fieldset {
+    padding: 0 0.8em;
+    border: 1px solid lightgray;
+}
+
+fieldset legend {
+    font-size: 0.8em;
+    padding: .3em;
+}
+
 /*--- Output Table ---*/
 .output-table {
     margin: 1.25em auto;
     font-size: 0.75em;
-}
-
-.simple-input {
-    border: none;
-    border-bottom: 1px solid lightgray;
-    text-align: center;
 }
 
 .output-table th {

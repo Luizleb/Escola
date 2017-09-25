@@ -1,10 +1,7 @@
 var mysql = require("mysql");
-var dateFormat = require("dateformat");
-var numberFormat = require("format-number");
+var utils = require("./utils");
 var studentId;
 var studentName;
-
-formatedNumber = numberFormat({decimal:',',integerSeparator:'.'});
 
 module.exports = {
     index : function(req, res) {
@@ -114,11 +111,11 @@ module.exports = {
                     sumPayments += items["pay_actual_value"];
                     return {
                         month: items["due_name"],
-                        value: formatedNumber((items["pay_actual_value"]*1).toFixed(2)),
-                        date: dateFormat(items["pay_actual_date"],"dd-mm-yy")
+                        value: utils.formatedNumber((items["pay_actual_value"]*1).toFixed(2)),
+                        date: utils.formatedDate(items["pay_actual_date"],"dd-mm-yy")
                     }
                 }),
-                totalPayment: formatedNumber(sumPayments.toFixed(2)),
+                totalPayment: utils.formatedNumber(sumPayments.toFixed(2)),
                 name: rows[1].map(function(names) {
                     var name = names["reg_name"]
                     return name;

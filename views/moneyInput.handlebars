@@ -1,0 +1,119 @@
+
+<div class="row">
+    <div class="form-centered">
+        <form action="/cash/money/output" method="post" name="cashForm">
+            <div class="standard-input">
+                    <label>Data :</label>
+                    <input type="date" class="simple-input" name="date">
+                </div>
+            <fieldset>
+                <legend>Cédulas</legend>
+                <div class="standard-input">
+                    <label>R$ 2 :</label>
+                    <input type="text" class="simple-input" name="bill2">
+                </div>
+                <div class="standard-input">
+                    <label>R$ 5 :</label>
+                    <input type="text" class="simple-input" name="bill5">
+                </div>
+                <div class="standard-input">
+                    <label>R$ 10 :</label>
+                    <input type="text" class="simple-input" name="bill10">
+                </div>
+                <div class="standard-input">
+                    <label>R$ 20 :</label>
+                    <input type="text" class="simple-input" name="bill20">
+                </div>
+                <div class="standard-input">
+                    <label>R$ 50 :</label>
+                    <input type="text" class="simple-input" name="bill50">
+                </div>
+                <div class="standard-input">
+                    <label>R$ 100 :</label>
+                    <input type="text" class="simple-input" name="bill100">
+                </div>
+            </fieldset>
+                
+            <fieldset>
+                <legend>Moedas</legend>
+                <div class="standard-input">
+                    <label>R$ 0,05 :</label>
+                    <input type="text" class="simple-input" name="coin5">
+                </div>
+                <div class="standard-input">
+                    <label>R$ 0,10 :</label>
+                    <input type="text" class="simple-input" name="coin10">
+                </div>
+                <div class="standard-input">
+                    <label>R$ 0,25 :</label>
+                    <input type="text" class="simple-input" name="coin25">
+                </div>
+                <div class="standard-input">
+                    <label>R$ 0,50 :</label>
+                    <input type="text" class="simple-input" name="coin50">
+                </div>
+                <div class="standard-input">
+                    <label>R$ 1,00 :</label>
+                    <input type="text" class="simple-input" name="coin100">
+                </div>
+            </fieldset>
+                <div class="standard-input">
+                    <label>Total - Cédulas :</label>
+                    <input type="text" class="form-total" name="totalbill" disabled="disabled">
+                </div>
+                <div class="standard-input">
+                    <label>Total - Moedas :</label>
+                    <input type="text" class="form-total" name="totalcoin" disabled="disabled">
+                </div>
+                <div class="standard-input">
+                    <label>Total Geral :</label>
+                    <input type="text" class="form-total" name="total" disabled="disabled">
+                </div>
+            <div>
+                <input type="submit" value="Lançar">
+            </div>
+        </form> 
+    </div>
+</div>
+
+<script>
+    var fields = document.querySelectorAll("fieldset .simple-input");
+
+    var qtyListeners = function() {
+        var i = 0;
+        var ln = fields.length;
+        for(; i<ln; i++) {
+            fields[i].addEventListener('input', calculateTotal, false);
+        }
+    }
+
+    qtyListeners();
+
+    function calculateTotal(){
+        var bill2 = document.forms.cashForm.bill2.value || 0;
+        var bill5 = document.forms.cashForm.bill5.value || 0;
+        var bill10 = document.forms.cashForm.bill10.value || 0;
+        var bill20 = document.forms.cashForm.bill20.value || 0;
+        var bill50 = document.forms.cashForm.bill50.value || 0;
+        var bill100 = document.forms.cashForm.bill100.value || 0;
+        var coin5 = document.forms.cashForm.coin5.value || 0;
+        var coin10 = document.forms.cashForm.coin10.value || 0;
+        var coin25 = document.forms.cashForm.coin25.value || 0;
+        var coin50 = document.forms.cashForm.coin50.value || 0;
+        var coin100 = document.forms.cashForm.coin100.value || 0;
+
+        var total_bills = 2*parseFloat(bill2) + 5*parseFloat(bill5) + 10*parseFloat(bill10) + 20*parseFloat(bill20) + 50*parseFloat(bill50) + 100*parseFloat(bill100);
+
+        var total_coins = 0.05*parseFloat(coin5) + 0.10*parseFloat(coin10) +  0.25*parseFloat(coin25) + 0.50*parseFloat(coin50) + 1.00*parseFloat(coin100);
+
+        var total = total_bills + total_coins;
+        
+        document.forms.cashForm.totalbill.value = formatMoney(total_bills.toFixed(2));
+        document.forms.cashForm.totalcoin.value = formatMoney(total_coins.toFixed(2));
+        document.forms.cashForm.total.value = formatMoney(total.toFixed(2));
+    }
+
+    function formatMoney(value){
+        return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".").replace(/\./g,",");
+    }
+</script>

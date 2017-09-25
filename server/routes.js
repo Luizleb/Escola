@@ -4,6 +4,7 @@ var router = express.Router();
 var home = require("../controllers/home");
 var payment = require("../controllers/payment");
 var treasury = require("../controllers/treasury");
+var cash = require("../controllers/cash");
 
 // basic routing
 router.get('/', home.index);
@@ -18,5 +19,11 @@ router.post('/payment/update/post', payment.updatePost)
 router.get('/treasury/update', treasury.index);
 router.post('/treasury/output', treasury.output);
 
+// routing - Cash
+router.get('/cash/input', cash.index);
+router.get('/cash/money', cash.moneyInput);
+router.get('/cash/vale', cash.valeInput);
+router.get('/cash/check', cash.checkInput);
+router.post('/cash/money/output', cash.moneyOutput);
 
 module.exports = router;
