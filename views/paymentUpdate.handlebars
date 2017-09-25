@@ -1,42 +1,41 @@
 <div class="row">
-    <div class="form-centered">
-        <form action="/payment/update/post" method="post">
-            <div class="standard-input">
-                <label>Atualização de Pagamentos : <span class="underlined-title">{{name}}</span></label>
-            </div>
-            <div class="standard-input">
-                <label>Mês de Referência :</label>
-                <select name="mesId">
-                    <option></option>
-                    {{# each listDates}}
-                        <option value={{id}}>{{dateName}}</option>
-                    {{/each}}
-                </select>
-            </div>
+    <div>
+        <form action="/payment/update/post" method="post" class="form-centered">
+            <div>
+                <div class="standard-input">
+                    <label>Atualização de Pagamentos : <span class="underlined-title">{{name}}</span></label>
+                </div>
+                <div class="standard-input">
+                    <label>Mês de Referência :</label>
+                    <select name="mesId">
+                        <option></option>
+                        {{# each listDates}}
+                            <option value={{id}}>{{dateName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
+                <div class="standard-input">
+                    <label>Valor Pago (R$) :</label>
+                    <input type="text" class="simple-input" name="payment">
+                </div>
 
-            <div class="standard-input">
-                <label>Valor Pago (R$) :</label>
-                <input type="text" class="simple-input" name="payment">
-            </div>
-
-            <div class="standard-input">
-                <label>Local do Pagamento :</label>
-                <select name="localName" id="local">
-                    <option value="Tesouraria">Banco</option>
-                    <option value="Banco">Tesouraria</option>
-                </select>
-            </div>
-
-            <div class="standard-input" id="forma">
-                <label>Forma de Pagamento :</label>
-                <input type="radio" name="forma" value="Dinheiro" checked>Dinheiro
-                <input type="radio" name="forma" value="Cheque">Cheque
-                <input type="radio" name="forma" value="Cartão">Cartão
-            </div>
-
-            <div class="standard-input">
-                <label>Data do Pagamento :</label>
-                <input type="date" class="simple-input" name="date" id="datepicker">
+                <div class="standard-input">
+                    <label>Local do Pagamento :</label>
+                    <select name="localName" id="local">
+                        <option value="Tesouraria">Banco</option>
+                        <option value="Banco">Tesouraria</option>
+                    </select>
+                </div>
+                <div class="standard-input" id="forma">
+                    <label>Forma de Pagamento :</label>
+                    <input type="radio" name="forma" value="Dinheiro" checked>Dinheiro
+                    <input type="radio" name="forma" value="Cheque">Cheque
+                    <input type="radio" name="forma" value="Cartão">Cartão
+                </div>
+                <div class="standard-input">
+                    <label>Data do Pagamento :</label>
+                    <input type="date" class="simple-input" name="date" id="datepicker">
+                </div>
             </div>
 
             <div>

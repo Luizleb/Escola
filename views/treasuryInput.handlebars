@@ -1,36 +1,38 @@
 <div class="row">
-    <div class="form-centered">
-        <form action="/treasury/output" method="post">
-            <div class="standard-input">
-                <label>Conta :</label>
-                <select name="accountId">
-                    <option></option>
-                    {{# each accountList}}
-                        <option value={{accountId}}>{{accountName}}</option>
-                    {{/each}}
-                </select>
-            </div>
+    <div>
+        <form action="/treasury/output" method="post" class="form-centered">
+            <div>
+                <div class="standard-input">
+                    <label>Conta :</label>
+                    <select name="accountId">
+                        <option></option>
+                        {{# each accountList}}
+                            <option value={{accountId}}>{{accountName}}</option>
+                        {{/each}}
+                    </select>
+                </div>
 
-            <div class="standard-input">
-                <label>Forma de Pagamento :</label>
-                <input type="radio" name="forma" value="Dinheiro" checked>Dinheiro
-                <input type="radio" name="forma" value="Cheque">Cheque
-                <input type="radio" name="forma" value="Cartão">Cartão
-            </div>
+                <div class="standard-input">
+                    <label>Forma de Pagamento :</label>
+                    <input type="radio" name="forma" value="Dinheiro" checked>Dinheiro
+                    <input type="radio" name="forma" value="Cheque">Cheque
+                    <input type="radio" name="forma" value="Cartão">Cartão
+                </div>
 
-            <div class="standard-input">
-                <label>Descrição :</label>
-                <input type="text" class="simple-input" name="description">
-            </div>
+                <div class="standard-input">
+                    <label>Descrição :</label>
+                    <input type="text" class="text-input" name="description">
+                </div>
 
-            <div class="standard-input">
-                <label>Data :</label>
-                <input type="date" class="simple-input" name="date">
-            </div>
+                <div class="standard-input">
+                    <label>Data :</label>
+                    <input type="date" class="simple-input" name="date">
+                </div>
 
-            <div class="standard-input">
-                <label>Valor Pago (R$) :</label>
-                <input type="text" class="simple-input" name="value">
+                <div class="standard-input">
+                    <label>Valor Pago (R$) :</label>
+                    <input type="text" class="simple-input" name="value">
+                </div>
             </div>
 
             <div>

@@ -46,5 +46,62 @@ module.exports = {
         con.end(function(err){
             if(err) throw err;
         });
+    },
+    valeOutput: function(req, res) {
+        var data = {
+            id: null,
+            date_in: req.body.date,
+            date_out: null,
+            description: req.body.description,
+            value: req.body.value,
+            status: true
+        };
+
+        var con = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: 'escola'
+        });
+
+        con.query('INSERT INTO vale SET ?', data, function(err) {
+            if (err) throw err;
+        });
+
+        res.redirect(303, '/cash/input/');
+
+        con.end(function(err){
+            if(err) throw err;
+        });
+    },
+    checkOutput: function(req, res) {
+        var data = {
+            id: null,
+            description: req.body.description,
+            date_in: req.body.date,
+            date_out: null,
+            bank: req.body.bank,
+            number: req.body.number,
+            type: req.body.type ,        
+            value: req.body.value,
+            status: 1
+        };
+
+        var con = mysql.createConnection({
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: 'escola'
+        });
+
+        con.query('INSERT INTO cheque SET ?', data, function(err) {
+            if (err) throw err;
+        });
+
+        res.redirect(303, '/cash/input/');
+
+        con.end(function(err){
+            if(err) throw err;
+        });
     }
 }

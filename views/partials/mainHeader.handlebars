@@ -4,11 +4,29 @@
             <h3><i class="fa fa-graduation-cap fa-lg"></i> Escola Prof. Jayme</h3>
         </div>
         <div class = "main-nav">
-            <a href="/">Home</a>
-            <a href="">Alunos</a>
-            <a href="/cash/input">Caixa</a>
-            <a href="/treasury/update">Tesouraria</a>
-            <a href="/payments">Mensalidades</a>
+            <ul class="menu">
+                <li><a href="/">Home</a></li>
+                <li><a href="">Alunos</a></li>
+                <li class="has-submenu"><a href="#">Caixa</a>
+                    <ul class="submenu">
+                        <li><a href="/cash/input">Lançamentos</a></li>
+                        <li><a href="">Consulta</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu"><a href="#">Tesouraria</a>
+                    <ul class="submenu">
+                        <li><a href="/treasury/update">Lançamentos</a></li>
+                        <li><a href="">Consulta</a></li>
+                    </ul>
+                </li>
+                <li class="has-submenu"><a href="#">Mensalidades</a>
+                    <ul class="submenu">
+                        <li><a href="/payments">Lançamentos</a></li>
+                        <li><a href="">Consulta</a></li>
+                    </ul>
+                </li>
+                <li><a href="">Outros</a></li>
+            </ul>   
         </div>
     </header>
 </div>

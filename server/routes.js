@@ -25,5 +25,7 @@ router.get('/cash/money', cash.moneyInput);
 router.get('/cash/vale', cash.valeInput);
 router.get('/cash/check', cash.checkInput);
 router.post('/cash/money/output', cash.moneyOutput);
+router.post('/cash/vale/output', cash.valeOutput);
+router.post('/cash/check/output', cash.checkOutput);
 
 module.exports = router;

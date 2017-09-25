@@ -1,0 +1,36 @@
+<div class="row">
+    <div class="form-centered">
+        <form action="/cash/check/output" method="post" name="checkForm">
+            <div class="standard-input">
+                <label>Data :</label>
+                <input type="date" class="simple-input" name="date">
+            </div>
+            <div class="standard-input">
+                <label>Tipo :</label>
+                <select name="type">
+                    <option value="Reg">Normal</option>
+                    <option value="Pre">Pré-datado</option>
+                </select>
+            </div>
+            <div class="standard-input">
+                <label>Número :</label>
+                <input type="text" class="simple-input" name="number">
+            </div>
+            <div class="standard-input">
+                <label>Banco :</label>
+                <input type="text" class="simple-input" name="bank">
+            </div>
+            <div class="standard-input">
+                <label>Nome :</label>
+                <input type="text" class="simple-input" name="description">
+            </div>
+            <div class="standard-input">
+                <label>Valor (R$) :</label>
+                <input type="text" class="simple-input" name="value">
+            </div>
+            <div>
+                <input type="submit" value="Lançar">
+            </div>
+        </form> 
+    </div>
+</div>

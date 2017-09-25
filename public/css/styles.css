@@ -18,34 +18,66 @@ body {
 }
 
 /*--- Header Setup ---*/
+/* Responsive Flexbox Dropdown Navigation - Jeff Weese*/
 .main-header {
     display: flex;
-    flex-flow: row nowrap;
+    flex-flow: row;
     justify-content: space-between;
     background-color: lightgray;
     margin-top: 1em;
 }
-
-.main-title, .main-nav{
-    padding: 15px;
+.main-title h3 {
+    padding: 1rem;
 }
-
-.main-nav a {
-    padding: 10px;
+.menu {
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.menu li {
+    list-style-type: none;
+}
+.menu li a {
+    display:flex;
+    text-align:center;
     text-decoration: none;
-    color: #000085;
-    padding-bottom: 1px;
+    color: #777;
+    padding:1rem;
 }
-
+.menu li a:hover {
+    background: #777;
+    color:#fff;
+}
+.has-submenu > a:after {
+    font-family:'FontAwesome';
+    font-size:0.8em;
+    content:'\f078';
+    padding: 1px;
+}
+header ul ul {
+    display:none;
+    position:absolute;
+}
+header ul li:hover > ul {
+    display: block;
+    background:#777;
+}
+header ul li:hover > ul a {
+    color: #fff;
+}
+.submenu li a:hover {
+    background: #ddd;
+    color:#777;
+}
 /*--- Forms ---*/
 .form-centered {
     display: flex;
-    flex-flow: column;
+    flex-direction: column;
     align-items: center;
     margin-top: 30px;
 }
 
-.simple-input {
+.simple-input, .text-input {
     border: none;
     border-bottom: 1px solid lightgray;
     text-align: center;
@@ -56,6 +88,10 @@ body {
 .standard-input {
     font-size: 0.8em;
     margin: 20px auto;
+}
+
+.standard-input select {
+    height: 1.5rem;
 }
 
 .standard-input ul {
