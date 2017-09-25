@@ -104,7 +104,7 @@ module.exports = {
         });
         var query = 'SELECT d.id, d.due_name, p.pay_actual_value, p.pay_actual_date FROM duedates d ' +
         'LEFT JOIN payments p ON d.id = p.pay_due_date_id AND p.pay_reg_id = ' + studentId + ' ORDER BY d.id;' +
-        'SELECT reg_name FROM register WHERE id = ' + studentId + ';';
+        'SELECT reg_name FROM register r WHERE r.id =' + studentId + ';';
         db.query(query, function(err, rows) {
             if (err) throw err;
             var sumPayments = 0;

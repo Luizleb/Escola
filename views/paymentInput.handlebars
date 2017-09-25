@@ -1,23 +1,21 @@
 
 <div class="row">
-    <div class="pay-input">
-        <div class="names">
-            <form action="/payment/output" method="post">
-                <div>
-                    <label>Aluno :</label>
-                    <select name="studentId">
-                        <option></option>
-                        {{# each listNames}}
-                            <option value={{studentId}}>{{studentName}}</option>
-                        {{/each}}
-                    </select>
-                </div>
-                
-                <div>
-                    <input type="submit" value="Buscar">
-                </div>
-            </form> 
-        </div>
+    <div class="form-centered">
+        <form action="/payment/output" method="post">
+            <div class="standard-input">
+                <label>Aluno :</label>
+                <select name="studentId">
+                    <option></option>
+                    {{# each listNames}}
+                        <option value={{studentId}}>{{studentName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            
+            <div>
+                <input type="submit" value="Buscar">
+            </div>
+        </form> 
     </div>
 </div>
 

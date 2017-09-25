@@ -8,7 +8,7 @@
 body {
     font-family: 'Roboto', Verdana, Tahoma, sans-serif;
     font-weight: lighter;
-    font-size: 14px;
+    font-size: 16px;
     color: #4F4F4F
 }
 
@@ -23,7 +23,7 @@ body {
     flex-flow: row nowrap;
     justify-content: space-between;
     background-color: lightgray;
-    margin-top: 15px;
+    margin-top: 1em;
 }
 
 .main-title, .main-nav{
@@ -37,32 +37,36 @@ body {
     padding-bottom: 1px;
 }
 
-.pay-input {
-    display: flex;
-    justify-content: center;
-    padding: 30px;
-}
-
-.pay-output, .pay-update {
+/*--- Forms ---*/
+.form-centered {
     display: flex;
     flex-flow: column;
     align-items: center;
     margin-top: 30px;
 }
 
-.pay-title {
-    font-size: 0.8rem;
+.standard-input {
+    font-size: 0.8em;
     margin: 20px auto;
-}
-
-.pay-title input, select {
-    height: 25px;
+    height:1.5em;
     text-align: center;
 }
 
-.pay-table {
-    margin: 20px auto;
-    font-size: 0.7rem;
+.underlined-title {
+    font-weight: 400;
+    text-decoration: underline;
+}
+
+input[type="radio"] {
+    display: inline-block;
+    height: 1.2em;
+    margin-right: 0.65em;
+}
+
+/*--- Output Table ---*/
+.output-table {
+    margin: 1.25em auto;
+    font-size: 0.75em;
 }
 
 .simple-input {
@@ -71,48 +75,32 @@ body {
     text-align: center;
 }
 
-.pay-table th {
+.output-table th {
     border-bottom: 1px solid gray;
-    padding: 5px;
+    padding: .35em;
 }
 
-.pay-table td {
+.output-table td {
     border-bottom: 1px solid lightgray;
-    padding: 5px;
+    padding: .35em;
 }
 
 .table-value {
     text-align: right;
 }
 
+/*--- Buttons ---*/
 .btn, input[type=submit] {
-    padding: 10px 20px;
+    padding: 0.6em 1.25em;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 0.25em;
     background-color: #e67e22;
     border: 1px solid #e67e22;
     color: white;
-    font-size: 0.9rem;
-    margin: 40px auto;
-}
-
-.names form {
-    display : flex;
-    flex-flow: column;
-    align-items: center;
-}
-
-.student-name {
-    font-weight: 400;
-    text-decoration: underline;
+    font-size: 0.8rem;
+    margin: 2.5em auto;
 }
 
 #forma {
     display: none;
-}
-
-input[type="radio"] {
-    display: inline-block;
-    height: 15px;
-    margin-right: 10px;
 }
