@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="form-centered">
+        <div class="main-title">
+            <h3>Listagem Detalhada - De : {{period.init}} até : {{period.end}}</h3>
+        </div>
+        <table class="output-table">
+            <thead>
+                <tr>
+                    <th>Conta</th>
+                    <th>Categoria</th>
+                    <th>Tipo</th>
+                    <th>Data</th>
+                    <th>Descrição</th>
+                    <th>Valor (R$)</th>
+                    <th>Método</th>
+                    <th>Usuário</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{# each results}}
+                    <tr>
+                        <td>{{account}}</td>
+                        <td>{{category}}</td>
+                        <td>{{type}}</td>
+                        <td>{{date}}</td>
+                        <td>{{description}}</td>
+                        <td class="table-value">{{value}}</td>
+                        <td>{{method}}</td>
+                        <td>{{user}}</td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        <div class="main-title">
+            <h3>Total : {{total}}</h3>
+        </div>
+    </div>
+</div>
+    

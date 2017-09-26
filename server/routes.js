@@ -18,6 +18,8 @@ router.post('/payment/update/post', payment.updatePost)
 // routing - Treasury
 router.get('/treasury/update', treasury.index);
 router.post('/treasury/output', treasury.output);
+router.get('/treasury/list/details', treasury.listDetails);
+router.post('/treasury/list/details/output', treasury.listDetailsOutput);
 
 // routing - Cash
 router.get('/cash/input', cash.index);
