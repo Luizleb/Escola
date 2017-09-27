@@ -57,7 +57,7 @@ module.exports = {
     },
 
     updatePost : function(req, res) {
-        var data = {
+        var dataPay = {
             id: null,
             pay_reg_id: studentId,
             pay_due_date_id: req.body.mesId,
@@ -79,7 +79,23 @@ module.exports = {
             database: 'escola'
         });
 
-        con.query('INSERT INTO payments SET ?', data, function(err) {
+        if((req.body.forma === "1") || (req.body.forma === "2")) {
+            var dataTre = {
+                id: null,
+                tre_description: "Mensalidade - Tesouraria",
+                tre_acc_id: 1,
+                tre_met_id: req.body.forma,
+                tre_date: req.body.date,
+                tre_value: req.body.payment,
+                tre_user: "Leb",
+                tre_timestamp: null
+            };
+            con.query('INSERT INTO treasury SET ?', dataTre, function(err) {
+                if (err) throw err;
+            });
+        }
+
+        con.query('INSERT INTO payments SET ?', dataPay, function(err) {
             if (err) throw err;
         });
 
@@ -112,7 +128,7 @@ module.exports = {
                     return {
                         month: items["due_name"],
                         value: utils.formatedNumber((items["pay_actual_value"]*1).toFixed(2)),
-                        date: utils.formatedDate(items["pay_actual_date"],"dd-mm-yy")
+                        date: utils.formatedDate(items["pay_actual_date"],"dd-mm-yy", true)
                     }
                 }),
                 totalPayment: utils.formatedNumber(sumPayments.toFixed(2)),

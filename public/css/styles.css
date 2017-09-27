@@ -29,6 +29,7 @@ body {
 .main-title h3 {
     padding: 1rem;
 }
+
 .menu {
     display:flex;
     flex-direction: row;

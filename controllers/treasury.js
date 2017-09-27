@@ -1,4 +1,5 @@
 var mysql = require('mysql');
+var utils = require("./utils");
 
 module.exports = {
     index: function (req, res) {
@@ -73,13 +74,14 @@ module.exports = {
         var date_end;
         var date_label_init, date_label_end;
         var queryString =  '';
+        var initial_balance = 12683.05;
 
         if (req.body.date_init === '') {
             date_init = '2000-01-01';
             date_label_init = "Tudo";
         } else {
             date_init = req.body.date_init;
-            date_label_init = date_init;
+            date_label_init = utils.formatedDate(date_init,"dd-mm-yy",true);
         }
 
         if (req.body.date_end === '') {
@@ -87,18 +89,19 @@ module.exports = {
             date_label_end = "Tudo";
         } else {
             date_end = req.body.date_end;
-            date_label_end = date_end;
+            date_label_end = utils.formatedDate(date_end,"dd-mm-yy",true);
         }
 
         queryString = 'SELECT t.tre_description, t.tre_date, t.tre_value, t.tre_user, a.acc_name,' +
             'm.met_name, c.cat_name, c.cat_type FROM treasury t INNER JOIN account a ON t.tre_acc_id = a.id' +
             ' INNER JOIN method m ON t.tre_met_id = m.id INNER JOIN category c ON a.acc_cat_id = ' +
-            'c.id WHERE t.tre_date >="' + date_init + '"AND t.tre_date <= "' + date_end + '"';
+            'c.id WHERE t.tre_date >="' + date_init + '"AND t.tre_date <= "' + date_end + '" ORDER BY t.tre_date, c.cat_type desc';
 
         con.query(queryString, function(err, rows) {
             if (err) throw err;
-            var sum = 12683.05;
+            var sum = initial_balance;
             var context = {
+                balance: utils.formatedNumber(initial_balance),
                 period: {
                     init: date_label_init,
                     end: date_label_end
@@ -106,21 +109,21 @@ module.exports = {
                 results: rows.map(function (items) {
                     var value_currency = ((items["tre_value"])*1).toFixed(2);
                     if (items.cat_type === 'D') {
-                        items.tra_value *= -1;
+                        items.tre_value *= -1;
                     }
                     sum += items.tre_value;
                     return {
                         description: items["tre_description"],
                         account: items["acc_name"],
-                        date: items["tre_date"],
-                        value: value_currency,
+                        date: utils.formatedDate(items["tre_date"],"dd-mm-yy", true),
+                        value: utils.formatedNumber(value_currency),
                         method: items["met_name"],
                         user: items["tre_user"],
                         category: items["cat_name"],
                         type: items["cat_type"]
                     }
                 }),
-                total: sum.toFixed(2)
+                total: utils.formatedNumber(sum.toFixed(2))
             };
             res.render('treasuryListOutput', context);
         });
