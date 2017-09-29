@@ -66,8 +66,7 @@ module.exports = {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'escola',
-            dateStrings: 'date'
+            database: 'escola'
         });
 
         var date_init;
