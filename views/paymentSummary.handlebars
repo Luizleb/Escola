@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="form-centered-row">
+        <div class="form-centered">
+            <div class="main-title">
+                <h4>Distribuição</h4>
+            </div>
+            <table class="output-table">
+                <thead>
+                    <tr>
+                        <th>Mês</th>
+                        <th>Valor (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{# each tuitionDist}}
+                        <tr>
+                            <td>{{month}}</td>
+                            <td class="table-value">{{total}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td class="table-value">{{totalDist}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+        <div class="form-centered">
+            <div class="main-title">
+                <h4>Pagamentos</h4>
+            </div>
+            <table class="output-table">
+                <thead>
+                    <tr>
+                        <th>Mês</th>
+                        <th>Valor (R$)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{# each tuitionPay}}
+                        <tr>
+                            <td>{{month}}</td>
+                            <td class="table-value">{{total}}</td>
+                        </tr>
+                    {{/each}}
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td class="table-value">{{totalPay}}</td>
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

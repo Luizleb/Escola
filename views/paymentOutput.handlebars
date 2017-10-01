@@ -8,24 +8,30 @@
                 <thead>
                     <tr>
                         <th>Mês</th>
-                        <th>Valor Pago (R$)</th>
+                        <th>Data Prev.</th>
+                        <th>A Pagar (R$)</th>
                         <th>Data Pagto</th>
+                        <th>Valor Pago (R$)</th>
                     </tr>
                 </thead>
                 <tbody>
                     {{# each results}}
                         <tr>
                             <td>{{month}}</td>
-                            <td class = "table-value">{{value}}</td>
-                            <td class = "table-value">{{date}}</td>
+                            <td class = "table-value">{{dateDue}}</td>
+                            <td class = "table-value">{{valueDue}}</td>
+                            <td class = "table-value">{{datePaid}}</td>
+                            <td class = "table-value">{{valuePaid}}</td>
                         </tr>
                     {{/each}}
                 </tbody>
                 <tfoot>
                     <tr>
                         <td>Total</td>
-                        <td class="table-value">{{totalPayment}}</td>
                         <td></td>
+                        <td></td>
+                        <td></td>
+                        <td class="table-value">{{totalPayment}}</td>
                     </tr>
                 </tfoot>
             </table>

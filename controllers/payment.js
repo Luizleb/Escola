@@ -107,7 +107,50 @@ module.exports = {
     },
 
     output: function(req, res) {     
-        var studentId = req.body.studentId;
+        var id = req.body.studentId;
+        var name = req.body.studentName;
+        var db = mysql.createConnection({
+            host: "localhost",
+            user: "root",
+            password: "",
+            database: "escola"
+        });
+        var query = 'SELECT d.id, d.due_name, d.due_date, '+
+        't.tui_value*(1-r.reg_discount) as net, p.pay_actual_value, p.pay_actual_date '+
+        'FROM duedates d '+
+            'INNER JOIN register r ON r.id = '+ id +
+            ' INNER JOIN grade g ON r.reg_grade = g.id '+
+            'INNER JOIN tuition t ON g.id = t.tui_grade_id '+
+            'LEFT JOIN payments p ON d.id = p.pay_due_date_id AND p.pay_reg_id = '+ id +
+            ' ORDER BY d.id;';
+        db.query(query, function(err, rows) {
+            if (err) throw err;
+            var sumPayments = 0;
+            var context = {
+                id: id,
+                name: name,
+                results: rows.map(function (items) {
+                    sumPayments += items["pay_actual_value"];
+                    if(items["pay_actual_date"] != null) {
+                        items["pay_actual_date"] = utils.formatedDate(items["pay_actual_date"],"dd-mm-yy", true);
+                    }
+                    return {
+                        month: items["due_name"],
+                        dateDue: utils.formatedDate(items["due_date"],"dd-mm-yy", true),
+                        valueDue: utils.formatedNumber((items["net"]*1).toFixed(2)),
+                        datePaid: items["pay_actual_date"],
+                        valuePaid: utils.formatedNumber((items["pay_actual_value"]*1).toFixed(2)),
+                    }
+                }),
+                totalPayment: utils.formatedNumber(sumPayments.toFixed(2)),
+            };
+            res.render('paymentOutput', context);
+        });
+        db.end(function(err){
+            if(err) throw err;
+        });
+    },
+    summary: function(req, res){
         var db = mysql.createConnection({
             host: "localhost",
             user: "root",
@@ -115,29 +158,37 @@ module.exports = {
             database: "escola",
             multipleStatements: true
         });
-        var query = 'SELECT d.id, d.due_name, p.pay_actual_value, p.pay_actual_date FROM duedates d ' +
-        'LEFT JOIN payments p ON d.id = p.pay_due_date_id AND p.pay_reg_id = ' + studentId + ' ORDER BY d.id;' +
-        'SELECT reg_name FROM register r WHERE r.id =' + studentId + ';';
-        db.query(query, function(err, rows) {
+        var query1 = 'SELECT d.due_name, sum(p.pay_actual_value) as total ' +
+        'FROM duedates d ' +
+            'LEFT JOIN payments p ON d.id = p.pay_due_date_id ' +
+            'GROUP BY due_name '+
+            'ORDER BY d.id;';
+        var query2 = 'SELECT month(p.pay_actual_date) as month, sum(p.pay_actual_value) as total ' + 
+        'FROM payments p ' +
+        'GROUP BY month(p.pay_actual_date);';
+        db.query(query1 + query2, function(err, rows) {
             if (err) throw err;
-            var sumPayments = 0;
+            var totalDist = 0;
+            var totalPay = 0;
             var context = {
-                id: studentId,
-                results: rows[0].map(function (items) {
-                    sumPayments += items["pay_actual_value"];
+                tuitionDist: rows[0].map(function (items) {
+                    totalDist += items["total"];
                     return {
                         month: items["due_name"],
-                        value: utils.formatedNumber((items["pay_actual_value"]*1).toFixed(2)),
-                        date: utils.formatedDate(items["pay_actual_date"],"dd-mm-yy", true)
+                        total: utils.formatedNumber((items["total"]).toFixed(2))
                     }
                 }),
-                totalPayment: utils.formatedNumber(sumPayments.toFixed(2)),
-                name: rows[1].map(function(names) {
-                    var name = names["reg_name"]
-                    return name;
-                })
+                tuitionPay: rows[1].map(function (items) {
+                    totalPay += items["total"];
+                    return {
+                        month: items["month"],
+                        total: utils.formatedNumber((items["total"]).toFixed(2))
+                    }
+                }),
+                totalDist: utils.formatedNumber(totalDist),
+                totalPay: utils.formatedNumber(totalPay )
             };
-            res.render('paymentOutput', context);
+            res.render('paymentSummary', context);
         });
         db.end(function(err){
             if(err) throw err;

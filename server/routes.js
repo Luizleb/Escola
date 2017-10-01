@@ -10,10 +10,11 @@ var cash = require("../controllers/cash");
 router.get('/', home.index);
 
 // routing - Payments
-router.get('/payments', payment.index);
+router.get('/payment', payment.index);
 router.post('/payment/output', payment.output);
 router.get('/payment/update/:id/:name', payment.updateGet);
-router.post('/payment/update/post', payment.updatePost)
+router.post('/payment/update/post', payment.updatePost);
+router.get('/payment/summary', payment.summary);
 
 // routing - Treasury
 router.get('/treasury/update', treasury.index);

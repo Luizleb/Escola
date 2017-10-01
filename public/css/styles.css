@@ -78,6 +78,13 @@ header ul li:hover > ul a {
     margin-top: 30px;
 }
 
+.form-centered-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-top: 30px;
+}
+
 .simple-input, .text-input {
     border: none;
     border-bottom: 1px solid lightgray;
