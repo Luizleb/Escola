@@ -1,4 +1,4 @@
-var mysql = require("mysql");
+var mysql = require("../server/mysql");
 
 module.exports = {
     index: function(req, res) {
@@ -30,22 +30,16 @@ module.exports = {
             c100: req.body.coin100
         };
 
-        var con = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'escola'
-        });
-
-        con.query('INSERT INTO cash SET ?', data, function(err) {
-            if (err) throw err;
-        });
-
-        res.redirect(303, '/cash/input/');
-
-        con.end(function(err){
+        mysql.poolStd.getConnection(function(err,conn){
+            conn.query('INSERT INTO cash SET ?', data, function(err) {
+                if (err) throw err;
+            });
+    
+            res.redirect(303, '/cash/input/');
+    
+            conn.release();
             if(err) throw err;
-        });
+        });     
     },
     valeOutput: function(req, res) {
         var data = {
@@ -57,20 +51,14 @@ module.exports = {
             status: true
         };
 
-        var con = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'escola'
-        });
-
-        con.query('INSERT INTO vale SET ?', data, function(err) {
-            if (err) throw err;
-        });
-
-        res.redirect(303, '/cash/input/');
-
-        con.end(function(err){
+        mysql.poolStd.getConnection(function(err,conn){
+            conn.query('INSERT INTO vale SET ?', data, function(err) {
+                if (err) throw err;
+            });
+    
+            res.redirect(303, '/cash/input/');
+    
+            conn.release();
             if(err) throw err;
         });
     },
@@ -87,20 +75,14 @@ module.exports = {
             status: 1
         };
 
-        var con = mysql.createConnection({
-            host: 'localhost',
-            user: 'root',
-            password: '',
-            database: 'escola'
-        });
-
-        con.query('INSERT INTO cheque SET ?', data, function(err) {
-            if (err) throw err;
-        });
-
-        res.redirect(303, '/cash/input/');
-
-        con.end(function(err){
+        mysql.poolStd.getConnection(function(err, conn){
+            conn.query('INSERT INTO cheque SET ?', data, function(err) {
+                if (err) throw err;
+            });
+    
+            res.redirect(303, '/cash/input/');
+    
+            conn.release();
             if(err) throw err;
         });
     }
