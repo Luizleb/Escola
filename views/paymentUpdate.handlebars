@@ -16,7 +16,7 @@
                 </div>
                 <div class="standard-input">
                     <label>Valor Pago (R$) :</label>
-                    <input type="text" class="simple-input" name="payment">
+                    <input type="text" class="simple-input" name="payment" value={{tuition}}>
                 </div>
 
                 <div class="standard-input">
@@ -39,7 +39,10 @@
             </div>
 
             <div>
-                <input type="submit" value="Lançar">
+                <input type="submit" class="btn-orange" value="Lançar">
+            </div>
+            <div>
+                <a href="/payment" class="btn btn-blue">Voltar</a>
             </div>
         </form> 
     </div>

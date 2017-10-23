@@ -12,7 +12,7 @@ router.get('/', home.index);
 // routing - Payments
 router.get('/payment', payment.index);
 router.post('/payment/output', payment.output);
-router.get('/payment/update/:id/:name', payment.updateGet);
+router.get('/payment/update/:id/:name/:tuition', payment.updateGet);
 router.post('/payment/update/post', payment.updatePost);
 router.get('/payment/summary', payment.summary);
 

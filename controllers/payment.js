@@ -2,11 +2,13 @@ var mysql = require("../server/mysql");
 var utils = require("./utils");
 var studentId;
 var studentName;
+var studentTuition;
 
 module.exports = {
     index : function(req, res) {
         mysql.poolStd.getConnection(function(err,conn){
-            conn.query('SELECT id, reg_name FROM register ORDER BY reg_name; ', function(err, rows) {
+            conn.query('select r.id, r.reg_name from register r '+
+            'order by r.reg_name; ', function(err, rows) {
                 if (err) throw err;
                 var context = {
                     listNames: rows.map(function(list) {
@@ -26,6 +28,7 @@ module.exports = {
     updateGet : function(req, res) {
         studentId = req.params.id;
         studentName = req.params.name;
+        studentTuition = req.params.tuition;
         mysql.poolStd.getConnection(function(err,conn){
             conn.query('SELECT id, due_name FROM duedates; ', function(err, rows) {
                 if (err) throw err;
@@ -37,7 +40,8 @@ module.exports = {
                         }
                     }),
                     id: studentId,
-                    name: studentName
+                    name: studentName,
+                    tuition: studentTuition
                 };
                 res.render('paymentUpdate', context);
             });
@@ -83,7 +87,7 @@ module.exports = {
                 if (err) throw err;
             });
     
-            res.redirect(303, '/payment/update/' + studentId + '/' + studentName);
+            res.redirect(303, '/payment/update/' + studentId + '/' + studentName + '/' + studentTuition);
     
             conn.release();
             if(err) throw err;
@@ -105,11 +109,13 @@ module.exports = {
             conn.query(query, function(err, rows) {
                 if (err) throw err;
                 var sumPayments = 0;
+                var tuition;
                 var context = {
                     id: id,
                     name: name,
                     results: rows.map(function (items) {
                         sumPayments += items["pay_actual_value"];
+                        tuition = (items["net"]*1).toFixed(2);
                         if(items["pay_actual_date"] != null) {
                             items["pay_actual_date"] = utils.formatedDate(items["pay_actual_date"],"dd-mm-yy", true);
                         }
@@ -121,6 +127,7 @@ module.exports = {
                             valuePaid: utils.formatedNumber((items["pay_actual_value"]*1).toFixed(2)),
                         }
                     }),
+                    tuition: tuition,
                     totalPayment: utils.formatedNumber(sumPayments.toFixed(2)),
                 };
                 res.render('paymentOutput', context);
@@ -148,14 +155,14 @@ module.exports = {
                         totalDist += items["total"];
                         return {
                             month: items["due_name"],
-                            total: utils.formatedNumber((items["total"]).toFixed(2))
+                            total: utils.formatedNumber(items["total"])
                         }
                     }),
                     tuitionPay: rows[1].map(function (items) {
                         totalPay += items["total"];
                         return {
                             month: items["month"],
-                            total: utils.formatedNumber((items["total"]).toFixed(2))
+                            total: utils.formatedNumber(items["total"])
                         }
                     }),
                     totalDist: utils.formatedNumber(totalDist),

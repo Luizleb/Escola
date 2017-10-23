@@ -168,11 +168,19 @@ fieldset legend {
     padding: 0.6em 1.25em;
     text-decoration: none;
     border-radius: 0.25em;
-    background-color: #e67e22;
-    border: 1px solid #e67e22;
     color: white;
     font-size: 0.8rem;
     margin: 2.5em auto;
+}
+
+.btn-orange {
+    background-color: #e67e22;
+    border: 1px solid #e67e22;
+}
+
+.btn-blue {
+    background-color: #2F22E6;
+    border: 1px solid #2F22E6;
 }
 
 #forma {
