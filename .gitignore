@@ -1,2 +1,4 @@
 node_modules
 /queryPayment.sql
+/.idea
+*.xlsx
